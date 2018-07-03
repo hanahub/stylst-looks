@@ -114,7 +114,7 @@ function dlst_digitallylux_slider_widget()
     }
 
     echo $html;
-    echo '<img class="sb_pixel_img" src="http://shopbop.sp1.convertro.com/view/vt/v1/shopbop/1/cvo.gif?cvosrc=sponsored%20bloggers.' . $options["name"] . '.sb-km" />';
+    // echo '<img class="sb_pixel_img" src="http://shopbop.sp1.convertro.com/view/vt/v1/shopbop/1/cvo.gif?cvosrc=sponsored%20bloggers.' . $options["name"] . '.sb-km" />';
 }
 
 function dlst_digitallylux_register_widget() {
