@@ -1,11 +1,11 @@
 <?php
 /*
    Plugin Name: Stylst Looks
-   Plugin URI: http://www.stylst.com/plugin
+   Plugin URI: https://www.stylst.com/plugin
    Description: Stylst Looks is a plugin that features new looks within a sidebar and updates automatically every week. We offer a monthly compensation to be part of our network. Email info@socialroot.co for more info.
-   Version: 1.0.2
+   Version: 1.0.4
    Author: SocialRoot
-   Author URI: http://www.stylst.com
+   Author URI: https://www.stylst.com
    License: GPLv2 or later
 */
 
@@ -102,38 +102,4 @@
     //add_action( 'admin_enqueue_scripts', 'dlst_digitallylux_style_and_scripts' );
     add_action( 'wp_enqueue_scripts', 'dlst_digitallylux_style_and_scripts' );
     add_filter( 'plugin_action_links', 'dlst_digitallylux_action_links', 10, 2 );
-
-    add_action( 'save_post', 'dlst_post_tags', 10, 90 );
-    function dlst_post_tags( $post_id, $post, $update ) {
-
-      global $wpdb;
-
-      if (!$update) return;
-
-      $post_type = get_post_type($post_id);
-      if ( "post" != $post_type ) return;
-
-      $data = wp_get_post_tags($post_id);
-
-
-      if (!empty($data)) {
-        foreach ($data as $tag) {
-          $tags[] = $tag->name;
-        }
-
-        $site_url = site_url();
-        $data = array("site_url" => $site_url, "post_id" => $post_id, "tags" => $tags);
-        $data = json_encode($data);
-
-        $auth_key = 'Basic ' . base64_encode( "admin:PerCharge7" );
-
-        $response = dlst_call_api("http://palmsurf.stylst.com/tags.json", "POST", $data, $auth_key);
-
-        //$wpdb->insert( 'wp_log', array( 'name' => 'test', 'data' => $update . print_r($response, true) ), array( '%s', '%s' ) );
-      }
-    }
-
-
-
-
 ?>
